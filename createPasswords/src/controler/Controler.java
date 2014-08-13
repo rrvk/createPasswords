@@ -1,10 +1,16 @@
 package controler;
 
+import java.util.Enumeration;
+
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+
 public class Controler {
 	private boolean upperCase;
 	private boolean lowerCase;
 	private boolean numbers;
 	private boolean other;
+	private int length;
 	
 	public static boolean isInteger(String s) {
 	    try { 
@@ -16,6 +22,18 @@ public class Controler {
 	    	return true;
 	    return false;
 	}
+	
+	public static String getSelectedButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+
+        return null;
+    }
 
 	public String getPassword(String appName, String naam, int number) {
 		String password="";
@@ -24,13 +42,9 @@ public class Controler {
 		// set it to lower cases
 		appName=appName.toLowerCase();
 		naam=naam.toLowerCase();
-		//System.out.println(appName);
-		//System.out.println(naam);
-		//System.out.println(number);
 		int j;
 		int k;
-		// TODO lengte aanpassen
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < length; i++) {
 			// get the ascii code of the app name
 			if (i>=appName.length()){
 				// TODO dit netter maken, niet de laatste steeds pakken maar weer opnieuw beginnen
@@ -53,15 +67,10 @@ public class Controler {
 			}
 			character = naam.charAt(k);
 			int ascii2 = (int) character;
-			//System.out.println(ascii);
-			//System.out.println(ascii2);
 			int temp = ascii+ascii2*number;
-			//System.out.println("aa"+getNumber(temp));
-			//System.out.println("bb"+Character.toString ((char) getNumber(temp)));
 			password=password+Character.toString ((char) getNumber(temp));
 			// ascii tabel 33-125
 		}
-		//System.out.println(password);
 		return password;
 	}
 	
@@ -197,5 +206,19 @@ public class Controler {
 	 */
 	public void setOther(boolean other) {
 		this.other = other;
+	}
+
+	/**
+	 * @return the length
+	 */
+	public int getLength() {
+		return length;
+	}
+
+	/**
+	 * @param length the length to set
+	 */
+	public void setLength(int length) {
+		this.length = length;
 	}
 }

@@ -5,10 +5,12 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -21,7 +23,9 @@ public class Gui extends JFrame {
 	private JTextField txtNumber;
 	private JButton btnGenerate;
 	private JCheckBoxMenuItem cbMenuLowercase, cbMenuUppercase, cbMenuNumbers,cbMenuOther;
+	private JRadioButtonMenuItem rb6,rb8,rb10,rb12,rb14,rb16;
 	private JTextField txtPassword;
+	private ButtonGroup group;
 
 	/**
 	 * Create the frame.
@@ -88,40 +92,7 @@ public class Gui extends JFrame {
 		        "This is the menu of the options");
 		menuBar.add(menu);
 
-//		//a group of JMenuItems
-//		menuItem = new JMenuItem("A text-only menu item",
-//		                         KeyEvent.VK_T);
-//		menuItem.setAccelerator(KeyStroke.getKeyStroke(
-//		        KeyEvent.VK_1, ActionEvent.ALT_MASK));
-//		menuItem.getAccessibleContext().setAccessibleDescription(
-//		        "This doesn't really do anything");
-//		menu.add(menuItem);
-//
-//		menuItem = new JMenuItem("Both text and icon",
-//		                         new ImageIcon("images/middle.gif"));
-//		menuItem.setMnemonic(KeyEvent.VK_B);
-//		menu.add(menuItem);
-//
-//		menuItem = new JMenuItem(new ImageIcon("images/middle.gif"));
-//		menuItem.setMnemonic(KeyEvent.VK_D);
-//		menu.add(menuItem);
-//
-//		//a group of radio button menu items
-//		menu.addSeparator();
-//		ButtonGroup group = new ButtonGroup();
-//		rbMenuItem = new JRadioButtonMenuItem("A radio button menu item");
-//		rbMenuItem.setSelected(true);
-//		rbMenuItem.setMnemonic(KeyEvent.VK_R);
-//		group.add(rbMenuItem);
-//		menu.add(rbMenuItem);
-//
-//		rbMenuItem = new JRadioButtonMenuItem("Another one");
-//		rbMenuItem.setMnemonic(KeyEvent.VK_O);
-//		group.add(rbMenuItem);
-//		menu.add(rbMenuItem);
-
 		//a group of check box menu items
-		//menu.addSeparator();
 		cbMenuUppercase = new JCheckBoxMenuItem("Uppercase");
 		cbMenuUppercase.setMnemonic(KeyEvent.VK_U);
 		menu.add(cbMenuUppercase);
@@ -138,30 +109,34 @@ public class Gui extends JFrame {
 		cbMenuOther.setMnemonic(KeyEvent.VK_T);
 		menu.add(cbMenuOther);
 
-//		//a submenu
-//		menu.addSeparator();
-//		submenu = new JMenu("A submenu");
-//		submenu.setMnemonic(KeyEvent.VK_S);
-//
-//		menuItem = new JMenuItem("An item in the submenu");
-//		menuItem.setAccelerator(KeyStroke.getKeyStroke(
-//		        KeyEvent.VK_2, ActionEvent.ALT_MASK));
-//		submenu.add(menuItem);
-//
-//		menuItem = new JMenuItem("Another item");
-//		submenu.add(menuItem);
-//		menu.add(submenu);
-
-//		//Build second menu in the menu bar.
-//		menu = new JMenu("Another Menu");
-//		menu.setMnemonic(KeyEvent.VK_N);
-//		menu.getAccessibleContext().setAccessibleDescription(
-//		        "This menu does nothing");
-//		menuBar.add(menu);
-
-		this.setJMenuBar(menuBar);
+		// make the sub menu for length
+		menu.addSeparator();
+		JMenu submenu = new JMenu("Password length");
+		submenu.setMnemonic(KeyEvent.VK_P);
 		
-		
+		group = new ButtonGroup();
+		rb6 = new JRadioButtonMenuItem("6");
+		rb8 = new JRadioButtonMenuItem("8");
+		rb10 = new JRadioButtonMenuItem("10");
+		rb10.setSelected(true);
+		rb12 = new JRadioButtonMenuItem("12");
+		rb14 = new JRadioButtonMenuItem("14");
+		rb16 = new JRadioButtonMenuItem("16");
+		group.add(rb6);
+		group.add(rb8);
+		group.add(rb10);
+		group.add(rb12);
+		group.add(rb14);
+		group.add(rb16);
+		submenu.add(rb6);
+		submenu.add(rb8);
+		submenu.add(rb10);
+		submenu.add(rb12);
+		submenu.add(rb14);
+		submenu.add(rb16);
+
+		menu.add(submenu);
+		this.setJMenuBar(menuBar);	
 	}
 
 	/**
@@ -172,24 +147,10 @@ public class Gui extends JFrame {
 	}
 
 	/**
-	 * @param txtAppName the txtAppName to set
-	 */
-	public void setTxtAppName(JTextField txtAppName) {
-		this.txtAppName = txtAppName;
-	}
-
-	/**
 	 * @return the txtUserName
 	 */
 	public JTextField getTxtUserName() {
 		return txtUserName;
-	}
-
-	/**
-	 * @param txtUserName the txtUserName to set
-	 */
-	public void setTxtUserName(JTextField txtUserName) {
-		this.txtUserName = txtUserName;
 	}
 
 	/**
@@ -200,13 +161,6 @@ public class Gui extends JFrame {
 	}
 
 	/**
-	 * @param txtNumber the txtNumber to set
-	 */
-	public void setTxtNumber(JTextField txtNumber) {
-		this.txtNumber = txtNumber;
-	}
-
-	/**
 	 * @return the btnGenerate
 	 */
 	public JButton getBtnGenerate() {
@@ -214,25 +168,10 @@ public class Gui extends JFrame {
 	}
 
 	/**
-	 * @param btnGenerate the btnGenerate to set
-	 */
-	public void setBtnGenerate(JButton btnGenerate) {
-		this.btnGenerate = btnGenerate;
-	}
-
-
-	/**
 	 * @return the cbMenuLowercase
 	 */
 	public JCheckBoxMenuItem getCbMenuLowercase() {
 		return cbMenuLowercase;
-	}
-
-	/**
-	 * @param cbMenuLowercase the cbMenuLowercase to set
-	 */
-	public void setCbMenuLowercase(JCheckBoxMenuItem cbMenuLowercase) {
-		this.cbMenuLowercase = cbMenuLowercase;
 	}
 
 	/**
@@ -243,13 +182,6 @@ public class Gui extends JFrame {
 	}
 
 	/**
-	 * @param cbMenuUppercase the cbMenuUppercase to set
-	 */
-	public void setCbMenuUppercase(JCheckBoxMenuItem cbMenuUppercase) {
-		this.cbMenuUppercase = cbMenuUppercase;
-	}
-
-	/**
 	 * @return the cbMenuNumbers
 	 */
 	public JCheckBoxMenuItem getCbMenuNumbers() {
@@ -257,24 +189,10 @@ public class Gui extends JFrame {
 	}
 
 	/**
-	 * @param cbMenuNumbers the cbMenuNumbers to set
-	 */
-	public void setCbMenuNumbers(JCheckBoxMenuItem cbMenuNumbers) {
-		this.cbMenuNumbers = cbMenuNumbers;
-	}
-
-	/**
 	 * @return the cbMenuOther
 	 */
 	public JCheckBoxMenuItem getCbMenuOther() {
 		return cbMenuOther;
-	}
-
-	/**
-	 * @param cbMenuOther the cbMenuOther to set
-	 */
-	public void setCbMenuOther(JCheckBoxMenuItem cbMenuOther) {
-		this.cbMenuOther = cbMenuOther;
 	}
 
 	/**
@@ -289,5 +207,12 @@ public class Gui extends JFrame {
 	 */
 	public void setTxtPassword(JTextField txtPassword) {
 		this.txtPassword = txtPassword;
+	}
+
+	/**
+	 * @return the group
+	 */
+	public ButtonGroup getGroup() {
+		return group;
 	}
 }
