@@ -11,6 +11,7 @@ public class Controler {
 	private boolean numbers;
 	private boolean other;
 	private int length;
+	private final String LETTERS="f89yrhjklarhf3q0hfslknz.sfq3r0j9q";
 	
 	public static boolean isInteger(String s) {
 	    try { 
@@ -42,30 +43,25 @@ public class Controler {
 		// set it to lower cases
 		appName=appName.toLowerCase();
 		naam=naam.toLowerCase();
-		int j;
-		int k;
 		for (int i = 0; i < length; i++) {
+			char character = 0;
 			// get the ascii code of the app name
 			if (i>=appName.length()){
-				// TODO dit netter maken, niet de laatste steeds pakken maar weer opnieuw beginnen
-				j=i-aantal;
+				character = LETTERS.charAt(aantal);
 				aantal++;
 			}
 			else{
-				j=i;
+				character = appName.charAt(i);
 			}
-			char character = appName.charAt(j);
 			int ascii = (int) character;
 			// get the ascii code of the name
 			if (i>=naam.length()){
-				// TODO dit netter maken, niet de laatste steeds pakken maar weer opnieuw beginnen
-				k=i-aantal2;
+				character = LETTERS.charAt(aantal2);
 				aantal2++;
 			}
 			else{
-				k=i;
+				character = naam.charAt(i);
 			}
-			character = naam.charAt(k);
 			int ascii2 = (int) character;
 			int temp = ascii+ascii2*number;
 			password=password+Character.toString ((char) getNumber(temp));
@@ -76,6 +72,7 @@ public class Controler {
 	
 	private int getNumber(int retn){
 		// TODO CHECK RECURSIE OF FOR LOOP
+		// TODO hoofdletter enz niet in het begin maar ergens in het midden, niet steeds op de zelfde plek
 		if (upperCase){
 			upperCase=false;
 			return getUpperCase(retn);
