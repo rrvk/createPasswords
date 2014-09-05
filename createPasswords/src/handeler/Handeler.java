@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import gui.Gui;
 import controler.Controler;
@@ -22,9 +23,7 @@ public class Handeler {
 		gui.addWindowListener(new WindowListener() {
 			
 			public void windowOpened(WindowEvent arg0) {
-				Write w = new Write();
-				// TODO Auto-generated method stub
-				
+				// TODO dataladen en laten zien				
 			}
 			
 			public void windowIconified(WindowEvent arg0) {
@@ -63,6 +62,21 @@ public class Handeler {
 					if (!gui.getTxtUserName().getText().isEmpty()){
 						if (!gui.getTxtNumber().getText().isEmpty() && Controler.isInteger(gui.getTxtNumber().getText())){
 							if (Integer.parseInt(gui.getTxtNumber().getText())<1000){
+								Write w = new Write();
+								w.setAppName(gui.getTxtAppName().getText());
+								w.setLength(Integer.parseInt(Controler.getSelectedButtonText(gui.getGroup())));
+								w.setLowerCase(gui.getCbMenuLowercase().getState());
+								w.setNumbers(gui.getCbMenuNumbers().getState());
+								w.setOther(gui.getCbMenuOther().getState());
+								w.setUpperCase(gui.getCbMenuUppercase().getState());
+								w.setUserName(gui.getTxtUserName().getText());
+								w.setCount(Integer.parseInt(gui.getTxtNumber().getText()));
+								try {
+									w.addLine();
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								// Check options
 								con.setLowerCase(gui.getCbMenuLowercase().getState());
 								con.setNumbers(gui.getCbMenuNumbers().getState());

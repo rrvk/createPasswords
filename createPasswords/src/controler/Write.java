@@ -10,23 +10,26 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Write {
+	private String appName;
+	private String userName;
 	private boolean upperCase;
 	private boolean lowerCase;
 	private boolean numbers;
 	private boolean other;
 	private int length;
+	private int count;
 	private final String FILENAME="conf.txt";
 	
 	public Write(){
-		try {
+		/*try {
 			/*
-			// appname;gebruikersnaam;hoofdletters;kleineletters;nummers;andere;lengte
+			// appname;gebruikersnaam;hoofdletters;kleineletters;nummers;andere;lengte;count
 			addSettingsFromeFile("www.test.com;test;1;1;1;1;10");
 			getAllSettingsFromFile();
 			System.out.println("-----------------");
 			System.out.println(getSettingsFromeFile("www.test.com2"));
 			deleteSettingsFromeFile("www.test.com2");*/
-			testAndCreateFile();
+			/*testAndCreateFile();
 			getAllSettingsFromFile();
 			System.out.println("-----------------");
 			addLine("wwww.a.a;test;1;1;1;1;5");
@@ -38,15 +41,25 @@ public class Write {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
-	private boolean addLine(String line) throws IOException{
+	private String createLine(){
+		return appName+";"+userName+";"+booleanToNum(upperCase)+";"+booleanToNum(lowerCase)+";"+booleanToNum(numbers)+";"+booleanToNum(other)+";"+length+";"+count;
+	}
+	
+	private int booleanToNum(boolean check){
+		if (check)
+			return 1;
+		return 0;
+	}
+	
+	public boolean addLine() throws IOException{
+		String line = createLine();
 		testAndCreateFile();
 		String file = getSettingsFromeFile(line.split(";")[0],line.split(";")[1]);
 		if (file!=null){
 			if (file.equals(line)){
-				System.out.println("jep");
 				return true;
 			}
 			deleteSettingsFromeFile(line.split(";")[0],line.split(";")[1]);
@@ -63,7 +76,7 @@ public class Write {
 	
 	private void addSettingsFromeFile(String settingLine) throws IOException{
 		String test[] = settingLine.split(";");
-		if (test.length==7){
+		if (test.length==8){
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(FILENAME, true)));
 			out.println(settingLine);
 			out.close();
@@ -81,8 +94,8 @@ public class Write {
 		String line;
 		while ((line = br.readLine()) != null) {
 			String[] test = line.split(";");
-			if (test.length > 6 &&
-					test[0]!=null && test[1]!=null && test[2]!=null && test[3]!=null && test[4]!=null && test[5]!=null && test[6]!=null){
+			if (test.length > 7 &&
+					test[0]!=null && test[1]!=null && test[2]!=null && test[3]!=null && test[4]!=null && test[5]!=null && test[6]!=null&& test[7]!=null){
 				System.out.println("App naam: "+test[0]);
 				System.out.println("Geb naam: "+test[1]);
 				System.out.println("Hoofdletter: "+test[2]);
@@ -90,6 +103,7 @@ public class Write {
 				System.out.println("Nummers: "+test[4]);
 				System.out.println("Andere: "+test[5]);
 				System.out.println("Lengte: "+test[6]);
+				System.out.println("Count: "+test[7]);
 			}
 			else{
 				System.out.println("line "+line+" is not correct");
@@ -221,5 +235,47 @@ public class Write {
 	 */
 	public void setLength(int length) {
 		this.length = length;
+	}
+
+	/**
+	 * @return the appName
+	 */
+	public String getAppName() {
+		return appName;
+	}
+
+	/**
+	 * @param appName the appName to set
+	 */
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	 * @return the count
+	 */
+	public int getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(int count) {
+		this.count = count;
 	}
 }
