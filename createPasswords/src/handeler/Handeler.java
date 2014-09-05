@@ -2,9 +2,12 @@ package handeler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import gui.Gui;
 import controler.Controler;
+import controler.Write;
 
 public class Handeler {
 	Gui gui;
@@ -16,6 +19,44 @@ public class Handeler {
 	}
 
 	private void addControler() {
+		gui.addWindowListener(new WindowListener() {
+			
+			public void windowOpened(WindowEvent arg0) {
+				Write w = new Write();
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void windowIconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void windowDeiconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void windowDeactivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void windowClosing(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void windowClosed(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void windowActivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		gui.getBtnGenerate().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (!gui.getTxtAppName().getText().isEmpty()){
