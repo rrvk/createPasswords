@@ -89,27 +89,32 @@ public class Write {
 	}
 	
 	// TODO kijken wat ik terug wil en dat returnen
-	private void getAllSettingsFromFile() throws IOException{
+	public String[][] getAllSettingsFromFile() throws IOException{
+		String[][] result = new String[countLines()][7];
+		int i=0;
 		BufferedReader br = new BufferedReader(new FileReader(FILENAME));
 		String line;
 		while ((line = br.readLine()) != null) {
 			String[] test = line.split(";");
 			if (test.length > 7 &&
 					test[0]!=null && test[1]!=null && test[2]!=null && test[3]!=null && test[4]!=null && test[5]!=null && test[6]!=null&& test[7]!=null){
-				System.out.println("App naam: "+test[0]);
+				result[i]=test;
+				i++;
+				/*System.out.println("App naam: "+test[0]);
 				System.out.println("Geb naam: "+test[1]);
 				System.out.println("Hoofdletter: "+test[2]);
 				System.out.println("Kleineletters: "+test[3]);
 				System.out.println("Nummers: "+test[4]);
 				System.out.println("Andere: "+test[5]);
 				System.out.println("Lengte: "+test[6]);
-				System.out.println("Count: "+test[7]);
+				System.out.println("Count: "+test[7]);*/
 			}
 			else{
 				System.out.println("line "+line+" is not correct");
 			}
 		}
 		br.close();
+		return result;
 	}
 	
 	private String getSettingsFromeFile(String siteName, String gebName) throws IOException{
@@ -174,6 +179,14 @@ public class Write {
 		    catch (IOException ex) {
 		      ex.printStackTrace();
 		    }
+	}
+	
+	private int countLines() throws IOException{
+		BufferedReader reader = new BufferedReader(new FileReader(FILENAME));
+		int lines = 0;
+		while (reader.readLine() != null) lines++;
+		reader.close();
+		return lines;
 	}
 
 	/**

@@ -6,13 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 
 public class Gui extends JFrame {
 
@@ -26,7 +29,9 @@ public class Gui extends JFrame {
 	private JRadioButtonMenuItem rb6,rb8,rb10,rb12,rb14,rb16;
 	private JTextField txtPassword;
 	private ButtonGroup group;
-
+	private DefaultListModel<String> recentModel;
+	private JList<String> recent;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -77,6 +82,14 @@ public class Gui extends JFrame {
 		txtPassword.setBounds(121, 86, 160, 20);
 		contentPane.add(txtPassword);
 		txtPassword.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(291, 14, 128, 130);
+		contentPane.add(scrollPane);
+		
+		recentModel= new DefaultListModel<String>();
+		recent = new JList<String>(recentModel);
+		scrollPane.setViewportView(recent);
 		
 		//Where the GUI is created:
 		JMenuBar menuBar;
@@ -214,5 +227,33 @@ public class Gui extends JFrame {
 	 */
 	public ButtonGroup getGroup() {
 		return group;
+	}
+
+	/**
+	 * @return the recentModel
+	 */
+	public DefaultListModel<String> getRecentModel() {
+		return recentModel;
+	}
+
+	/**
+	 * @param recentModel the recentModel to set
+	 */
+	public void setRecentModel(DefaultListModel<String> recentModel) {
+		this.recentModel = recentModel;
+	}
+
+	/**
+	 * @return the recent
+	 */
+	public JList<String> getRecent() {
+		return recent;
+	}
+
+	/**
+	 * @param recent the recent to set
+	 */
+	public void setRecent(JList<String> recent) {
+		this.recent = recent;
 	}
 }

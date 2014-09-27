@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		Gui gui = new Gui();
 		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gui.setBounds(100, 100, 317, 213);
+		gui.setBounds(100, 100, 450, 213);
 		gui.setResizable(false);
 		gui.setVisible(true);
 		Controler con = new Controler();

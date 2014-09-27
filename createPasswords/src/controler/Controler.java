@@ -13,6 +13,8 @@ public class Controler {
 	private int length;
 	private final String LETTERS="f89yrhjklarhf3q0hfslknz.sfq3r0j9q";
 	
+	private String[][] records;
+	
 	public static boolean isInteger(String s) {
 	    try { 
 	        Integer.parseInt(s); 
@@ -217,5 +219,19 @@ public class Controler {
 	 */
 	public void setLength(int length) {
 		this.length = length;
+	}
+
+	/**
+	 * @return the records
+	 */
+	public String[][] getRecords() {
+		return records;
+	}
+
+	/**
+	 * @param records the records to set
+	 */
+	public void setRecords(String[][] records) {
+		this.records = records;
 	}
 }
