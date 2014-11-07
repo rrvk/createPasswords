@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.swing.JOptionPane;
+
 public class Write {
 	private String appName;
 	private String userName;
@@ -19,30 +21,6 @@ public class Write {
 	private int length;
 	private int count;
 	private final String FILENAME="conf.txt";
-	
-	public Write(){
-		/*try {
-			/*
-			// appname;gebruikersnaam;hoofdletters;kleineletters;nummers;andere;lengte;count
-			addSettingsFromeFile("www.test.com;test;1;1;1;1;10");
-			getAllSettingsFromFile();
-			System.out.println("-----------------");
-			System.out.println(getSettingsFromeFile("www.test.com2"));
-			deleteSettingsFromeFile("www.test.com2");*/
-			/*testAndCreateFile();
-			getAllSettingsFromFile();
-			System.out.println("-----------------");
-			addLine("wwww.a.a;test;1;1;1;1;5");
-			addLine("wwww.a.a;tes1t;1;1;1;1;6");
-			addLine("wwww.a.a;test2;1;1;1;1;7");
-			addLine("wwww.a.a;tes3t;1;1;1;1;9");
-			getAllSettingsFromFile();
-			System.out.println("-----------------");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-	}
 	
 	private String createLine(){
 		return appName+";"+userName+";"+booleanToNum(upperCase)+";"+booleanToNum(lowerCase)+";"+booleanToNum(numbers)+";"+booleanToNum(other)+";"+length+";"+count;
@@ -82,14 +60,13 @@ public class Write {
 			out.close();
 		}
 		else{
-			// TODO exeption gooien
-			System.out.println("SETTING LINE NIET GOED");
+			JOptionPane.showMessageDialog(null, "Instellingen bestand niet goed");
 		}
 		
 	}
 	
-	// TODO kijken wat ik terug wil en dat returnen
 	public String[][] getAllSettingsFromFile() throws IOException{
+		testAndCreateFile();
 		String[][] result = new String[countLines()][7];
 		int i=0;
 		BufferedReader br = new BufferedReader(new FileReader(FILENAME));
@@ -100,14 +77,6 @@ public class Write {
 					test[0]!=null && test[1]!=null && test[2]!=null && test[3]!=null && test[4]!=null && test[5]!=null && test[6]!=null&& test[7]!=null){
 				result[i]=test;
 				i++;
-				/*System.out.println("App naam: "+test[0]);
-				System.out.println("Geb naam: "+test[1]);
-				System.out.println("Hoofdletter: "+test[2]);
-				System.out.println("Kleineletters: "+test[3]);
-				System.out.println("Nummers: "+test[4]);
-				System.out.println("Andere: "+test[5]);
-				System.out.println("Lengte: "+test[6]);
-				System.out.println("Count: "+test[7]);*/
 			}
 			else{
 				System.out.println("line "+line+" is not correct");

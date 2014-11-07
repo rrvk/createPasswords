@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 import javax.swing.AbstractButton;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -35,8 +36,7 @@ public class Handeler {
 			lines=w.getAllSettingsFromFile();
 			con.setRecords(lines);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "IO Error "+e.getMessage());
 		}
 		for (int i = 0; i < lines.length; i++) {
 			gui.getRecentModel().addElement(lines[i][0]+" "+lines[i][1]);
@@ -62,37 +62,13 @@ public class Handeler {
 			
 			public void windowOpened(WindowEvent arg0) {
 				updateListBox();				
-			}
-			
-			public void windowIconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			public void windowDeiconified(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			public void windowDeactivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			public void windowClosing(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			public void windowClosed(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			public void windowActivated(WindowEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
+			}			
+			public void windowIconified(WindowEvent arg0) {}
+			public void windowDeiconified(WindowEvent arg0) {}
+			public void windowDeactivated(WindowEvent arg0) {}
+			public void windowClosing(WindowEvent arg0) {}
+			public void windowClosed(WindowEvent arg0) {}
+			public void windowActivated(WindowEvent arg0) {}
 		});
 		
 		gui.getRecent().addListSelectionListener(new ListSelectionListener() {
@@ -159,8 +135,7 @@ public class Handeler {
 								try {
 									w.addLine();
 								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+									JOptionPane.showMessageDialog(null, "IO Error "+e.getMessage());
 								}
 								// Check options
 								gui.getTxtPassword().setText(getPassword(gui.getCbMenuLowercase().getState(),gui.getCbMenuNumbers().getState(),gui.getCbMenuOther().getState(),gui.getCbMenuUppercase().getState(),Integer.parseInt(Controler.getSelectedButtonText(gui.getGroup()))));
@@ -168,22 +143,19 @@ public class Handeler {
 							}
 							else{
 								// TODO uitzoeken hoehoog die kan
-								System.out.println("Het numer is te groot, wanneer dit hoger moet worden vraag de ontwikkelaar");
+								JOptionPane.showMessageDialog(null,"Het numer is te groot, wanneer dit hoger moet worden vraag de ontwikkelaar");
 							}
 						}
 						else{
-							// TODO EXEPTION EN POPUP
-							System.out.println("Er is geen geldig numer ingevoerd");
+							JOptionPane.showMessageDialog(null,"Er is geen geldig numer ingevoerd");
 						}
 					}
 					else{
-						// TODO EXEPTION EN POPUP
-						System.out.println("Er is geen naam ingevult");
+						JOptionPane.showMessageDialog(null,"Er is geen naam ingevult");
 					}
 				}
 				else{
-					// TODO EXEPTION EN POPUP
-					System.out.println("Er is geen application naam ingevult");
+					JOptionPane.showMessageDialog(null,"Er is geen application naam ingevult");
 				}				
 			}
 		});			
